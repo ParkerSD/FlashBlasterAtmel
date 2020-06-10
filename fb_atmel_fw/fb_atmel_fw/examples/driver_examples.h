@@ -26,7 +26,7 @@ void QUAD_SPI_0_example(void);
 
 void TIMER_0_example(void);
 
-void I2C_Read(uint8_t* buffer, uint16_t length);
+void I2C_read(uint8_t* buffer, uint16_t length);
 
 void WDT_0_example(void);
 

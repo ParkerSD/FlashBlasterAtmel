@@ -10,8 +10,10 @@
 #include <peripheral_clk_config.h>
 #include <utils.h>
 #include <hal_init.h>
-
+#include <spi_nor_flash.h>
+#include "spi_nor_flash_main.h"
 #include <hpl_rtc_base.h>
+#include "atmel_start_pins.h"
 
 struct timer_descriptor TIMER_0;
 
@@ -22,6 +24,29 @@ struct qspi_sync_descriptor QUAD_SPI_0;
 struct i2c_s_sync_descriptor I2C_0;
 
 struct wdt_descriptor WDT_0;
+
+
+
+void SWD_GPIO_init(void)
+{
+	gpio_set_pin_direction(SWO, GPIO_DIRECTION_IN);
+	gpio_set_pin_pull_mode(SWO, GPIO_PULL_OFF);
+	
+    gpio_set_pin_direction(SWCLK, GPIO_DIRECTION_OUT);
+	gpio_set_pin_level(SWCLK, true);
+	gpio_set_pin_pull_mode(SWCLK, GPIO_PULL_OFF);
+	
+	//SWDIO is both input and output alternately depending on state SWDIO_DIR Pin 
+	
+	gpio_set_pin_direction(RST_SENSE, GPIO_DIRECTION_IN);
+	gpio_set_pin_pull_mode(RST_SENSE, GPIO_PULL_OFF);
+	
+	gpio_set_pin_direction(RST, GPIO_DIRECTION_OUT);
+	gpio_set_pin_level(RST, false);
+	gpio_set_pin_pull_mode(RST, GPIO_PULL_OFF);
+	
+	
+}
 
 void EXTERNAL_IRQ_0_init(void)
 {
@@ -375,11 +400,15 @@ void system_init(void)
 
 	FLASH_0_init();
 
-	//QUAD_SPI_0_init();
-
 	TIMER_0_init();
 
 	I2C_0_init();
 
 	WDT_0_init();
+}
+
+void nor_flash_qspi_init(void)
+{
+	QUAD_SPI_0_init();
+	spi_nor_flash_init();
 }

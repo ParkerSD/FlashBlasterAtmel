@@ -106,7 +106,7 @@ void TIMER_0_example(void)
 	timer_start(&TIMER_0);
 }
 
-void I2C_Read(uint8_t* buffer, uint16_t length)
+void I2C_read(uint8_t* buffer, uint16_t length)
 {
 	struct io_descriptor *io;
 	
