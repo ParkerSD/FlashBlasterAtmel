@@ -10,29 +10,6 @@
 #include "driver_init.h"
 #include "utils.h"
 
-static void button_on_PA05_pressed(void)
-{
-}
-
-static void button_on_PA06_pressed(void)
-{
-}
-
-static void button_on_PA07_pressed(void)
-{
-}
-
-/**
- * Example of using EXTERNAL_IRQ_0
- */
-void EXTERNAL_IRQ_0_example(void)
-{
-
-	ext_irq_register(PIN_PA05, button_on_PA05_pressed);
-	ext_irq_register(PIN_PA06, button_on_PA06_pressed);
-	ext_irq_register(PIN_PA07, button_on_PA07_pressed);
-}
-
 static uint8_t src_data[512];
 static uint8_t chk_data[512];
 /**
@@ -104,6 +81,20 @@ void TIMER_0_example(void)
 	timer_add_task(&TIMER_0, &TIMER_0_task1);
 	timer_add_task(&TIMER_0, &TIMER_0_task2);
 	timer_start(&TIMER_0);
+}
+
+/**
+ * Example of using SPI_0 to write "Hello World" using the IO abstraction.
+ */
+static uint8_t example_SPI_0[12] = "Hello World!";
+
+void SPI_0_example(void)
+{
+	struct io_descriptor *io;
+	spi_m_sync_get_io_descriptor(&SPI_0, &io);
+
+	spi_m_sync_enable(&SPI_0);
+	io_write(io, example_SPI_0, 12);
 }
 
 void I2C_read(uint8_t* buffer, uint16_t length)

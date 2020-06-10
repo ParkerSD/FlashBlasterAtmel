@@ -540,7 +540,7 @@ void Reset_Handler(void)
  * \brief Default interrupt handler for unused IRQs.
  */
 void Dummy_Handler(void)
-{		volatile int c = 1;
-        while (c == 1) {
+{
+        while (1) {
         }
 }

@@ -10,17 +10,14 @@
 
 int main(void)
 {
-	/* Initializes MCU, drivers and middleware */
 	atmel_start_init();
-	SWD_GPIO_init();
 	
 	uint8_t buffer[RX_LENGTH]; 
 	
 	while (1) 
 	{
-		
 		/*
-		for(int i = 0; i<1000; i++)
+		for(int i = 0; i<1000; i++) // for test 
 		{
 			gpio_set_pin_level(SWCLK, false);
 			delay_ms(50);
@@ -28,9 +25,7 @@ int main(void)
 			delay_ms(50);
 		}
 		*/
-		
-
-		
+	
 		I2C_read(buffer, RX_LENGTH);
 		
 		nor_flash_qspi_init();
@@ -46,7 +41,7 @@ int main(void)
 				uint8_t qspi_buff[data_len];
 				spi_nor_flash_read(SPI_NOR_FLASH_0, qspi_buff, data_addr, data_len);
 				
-				//bit bang swd over gpio 
+				//swd over spi
 				
 			}
 			

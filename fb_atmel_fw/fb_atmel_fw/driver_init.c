@@ -10,12 +10,14 @@
 #include <peripheral_clk_config.h>
 #include <utils.h>
 #include <hal_init.h>
+
 #include <spi_nor_flash.h>
 #include "spi_nor_flash_main.h"
 #include <hpl_rtc_base.h>
 #include "atmel_start_pins.h"
 
-struct timer_descriptor TIMER_0;
+struct timer_descriptor      TIMER_0;
+struct spi_m_sync_descriptor SPI_0;
 
 struct flash_descriptor FLASH_0;
 
@@ -24,76 +26,6 @@ struct qspi_sync_descriptor QUAD_SPI_0;
 struct i2c_s_sync_descriptor I2C_0;
 
 struct wdt_descriptor WDT_0;
-
-
-
-void SWD_GPIO_init(void)
-{
-	gpio_set_pin_direction(SWO, GPIO_DIRECTION_IN);
-	gpio_set_pin_pull_mode(SWO, GPIO_PULL_OFF);
-	
-    gpio_set_pin_direction(SWCLK, GPIO_DIRECTION_OUT);
-	gpio_set_pin_level(SWCLK, true);
-	gpio_set_pin_pull_mode(SWCLK, GPIO_PULL_OFF);
-	
-	//SWDIO is both input and output alternately depending on state SWDIO_DIR Pin 
-	
-	gpio_set_pin_direction(RST_SENSE, GPIO_DIRECTION_IN);
-	gpio_set_pin_pull_mode(RST_SENSE, GPIO_PULL_OFF);
-	
-	gpio_set_pin_direction(RST, GPIO_DIRECTION_OUT);
-	gpio_set_pin_level(RST, false);
-	gpio_set_pin_pull_mode(RST, GPIO_PULL_OFF);
-	
-	
-}
-
-void EXTERNAL_IRQ_0_init(void)
-{
-	hri_gclk_write_PCHCTRL_reg(GCLK, EIC_GCLK_ID, CONF_GCLK_EIC_SRC | (1 << GCLK_PCHCTRL_CHEN_Pos));
-	hri_mclk_set_APBAMASK_EIC_bit(MCLK);
-
-	// Set pin direction to input
-	gpio_set_pin_direction(PA05, GPIO_DIRECTION_IN);
-
-	gpio_set_pin_pull_mode(PA05,
-	                       // <y> Pull configuration
-	                       // <id> pad_pull_config
-	                       // <GPIO_PULL_OFF"> Off
-	                       // <GPIO_PULL_UP"> Pull-up
-	                       // <GPIO_PULL_DOWN"> Pull-down
-	                       GPIO_PULL_OFF);
-
-	gpio_set_pin_function(PA05, PINMUX_PA05A_EIC_EXTINT5);
-
-	// Set pin direction to input
-	gpio_set_pin_direction(PA06, GPIO_DIRECTION_IN);
-
-	gpio_set_pin_pull_mode(PA06,
-	                       // <y> Pull configuration
-	                       // <id> pad_pull_config
-	                       // <GPIO_PULL_OFF"> Off
-	                       // <GPIO_PULL_UP"> Pull-up
-	                       // <GPIO_PULL_DOWN"> Pull-down
-	                       GPIO_PULL_OFF);
-
-	gpio_set_pin_function(PA06, PINMUX_PA06A_EIC_EXTINT6);
-
-	// Set pin direction to input
-	gpio_set_pin_direction(PA07, GPIO_DIRECTION_IN);
-
-	gpio_set_pin_pull_mode(PA07,
-	                       // <y> Pull configuration
-	                       // <id> pad_pull_config
-	                       // <GPIO_PULL_OFF"> Off
-	                       // <GPIO_PULL_UP"> Pull-up
-	                       // <GPIO_PULL_DOWN"> Pull-down
-	                       GPIO_PULL_OFF);
-
-	gpio_set_pin_function(PA07, PINMUX_PA07A_EIC_EXTINT7);
-
-	ext_irq_init();
-}
 
 void FLASH_0_CLOCK_init(void)
 {
@@ -342,10 +274,66 @@ static void TIMER_0_init(void)
 	timer_init(&TIMER_0, RTC, _rtc_get_timer());
 }
 
+void SPI_0_PORT_init(void)
+{
+
+	gpio_set_pin_level(PA04,
+	                   // <y> Initial level
+	                   // <id> pad_initial_level
+	                   // <false"> Low
+	                   // <true"> High
+	                   false);
+
+	// Set pin direction to output
+	gpio_set_pin_direction(PA04, GPIO_DIRECTION_OUT);
+
+	gpio_set_pin_function(PA04, PINMUX_PA04D_SERCOM0_PAD0);
+
+	gpio_set_pin_level(PA05,
+	                   // <y> Initial level
+	                   // <id> pad_initial_level
+	                   // <false"> Low
+	                   // <true"> High
+	                   false);
+
+	// Set pin direction to output
+	gpio_set_pin_direction(PA05, GPIO_DIRECTION_OUT);
+
+	gpio_set_pin_function(PA05, PINMUX_PA05D_SERCOM0_PAD1);
+
+	// Set pin direction to input
+	gpio_set_pin_direction(PA06, GPIO_DIRECTION_IN);
+
+	gpio_set_pin_pull_mode(PA06,
+	                       // <y> Pull configuration
+	                       // <id> pad_pull_config
+	                       // <GPIO_PULL_OFF"> Off
+	                       // <GPIO_PULL_UP"> Pull-up
+	                       // <GPIO_PULL_DOWN"> Pull-down
+	                       GPIO_PULL_OFF);
+
+	gpio_set_pin_function(PA06, PINMUX_PA06D_SERCOM0_PAD2);
+}
+
+void SPI_0_CLOCK_init(void)
+{
+	hri_gclk_write_PCHCTRL_reg(GCLK, SERCOM0_GCLK_ID_CORE, CONF_GCLK_SERCOM0_CORE_SRC | (1 << GCLK_PCHCTRL_CHEN_Pos));
+	hri_gclk_write_PCHCTRL_reg(GCLK, SERCOM0_GCLK_ID_SLOW, CONF_GCLK_SERCOM0_SLOW_SRC | (1 << GCLK_PCHCTRL_CHEN_Pos));
+
+	hri_mclk_set_APBAMASK_SERCOM0_bit(MCLK);
+}
+
+void SPI_0_init(void)
+{
+	SPI_0_CLOCK_init();
+	spi_m_sync_init(&SPI_0, SERCOM0);
+	SPI_0_PORT_init();
+}
+
 void I2C_0_PORT_init(void)
 {
 
-	gpio_set_pin_pull_mode(PA23,
+	gpio_set_pin_pull_mode(PA17,
 	                       // <y> Pull configuration
 	                       // <id> pad_pull_config
 	                       // <GPIO_PULL_OFF"> Off
@@ -353,9 +341,9 @@ void I2C_0_PORT_init(void)
 	                       // <GPIO_PULL_DOWN"> Pull-down
 	                       GPIO_PULL_OFF);
 
-	gpio_set_pin_function(PA23, PINMUX_PA23D_SERCOM5_PAD0);
+	gpio_set_pin_function(PA17, PINMUX_PA17D_SERCOM3_PAD0);
 
-	gpio_set_pin_pull_mode(PA22,
+	gpio_set_pin_pull_mode(PA16,
 	                       // <y> Pull configuration
 	                       // <id> pad_pull_config
 	                       // <GPIO_PULL_OFF"> Off
@@ -363,21 +351,21 @@ void I2C_0_PORT_init(void)
 	                       // <GPIO_PULL_DOWN"> Pull-down
 	                       GPIO_PULL_OFF);
 
-	gpio_set_pin_function(PA22, PINMUX_PA22D_SERCOM5_PAD1);
+	gpio_set_pin_function(PA16, PINMUX_PA16D_SERCOM3_PAD1);
 }
 
 void I2C_0_CLOCK_init(void)
 {
-	hri_gclk_write_PCHCTRL_reg(GCLK, SERCOM5_GCLK_ID_CORE, CONF_GCLK_SERCOM5_CORE_SRC | (1 << GCLK_PCHCTRL_CHEN_Pos));
-	hri_gclk_write_PCHCTRL_reg(GCLK, SERCOM5_GCLK_ID_SLOW, CONF_GCLK_SERCOM5_SLOW_SRC | (1 << GCLK_PCHCTRL_CHEN_Pos));
+	hri_gclk_write_PCHCTRL_reg(GCLK, SERCOM3_GCLK_ID_CORE, CONF_GCLK_SERCOM3_CORE_SRC | (1 << GCLK_PCHCTRL_CHEN_Pos));
+	hri_gclk_write_PCHCTRL_reg(GCLK, SERCOM3_GCLK_ID_SLOW, CONF_GCLK_SERCOM3_SLOW_SRC | (1 << GCLK_PCHCTRL_CHEN_Pos));
 
-	hri_mclk_set_APBDMASK_SERCOM5_bit(MCLK);
+	hri_mclk_set_APBBMASK_SERCOM3_bit(MCLK);
 }
 
 void I2C_0_init(void)
 {
 	I2C_0_CLOCK_init();
-	i2c_s_sync_init(&I2C_0, SERCOM5);
+	i2c_s_sync_init(&I2C_0, SERCOM3);
 	I2C_0_PORT_init();
 }
 
@@ -396,16 +384,17 @@ void system_init(void)
 {
 	init_mcu();
 
-	EXTERNAL_IRQ_0_init();
-
 	FLASH_0_init();
 
 	TIMER_0_init();
+
+	SPI_0_init();
 
 	I2C_0_init();
 
 	WDT_0_init();
 }
+
 
 void nor_flash_qspi_init(void)
 {

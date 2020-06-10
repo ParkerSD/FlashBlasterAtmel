@@ -12,7 +12,7 @@
 extern "C" {
 #endif
 
-#include <n25q256a.h>
+#include <s25fl116k.h>
 
 extern struct spi_nor_flash *SPI_NOR_FLASH_0;
 

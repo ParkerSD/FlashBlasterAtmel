@@ -5,7 +5,6 @@
  * Please copy examples or other code you want to keep to a separate file
  * to avoid losing it when reconfiguring.
  */
-
 #include <stdint.h>
 
 #ifndef DRIVER_EXAMPLES_H_INCLUDED
@@ -17,8 +16,6 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-void EXTERNAL_IRQ_0_example(void);
 
 void FLASH_0_example(void);
 

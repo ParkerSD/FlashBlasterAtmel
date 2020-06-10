@@ -23,9 +23,9 @@ middlewares:
     user_label: SPI_NOR_FLASH_0
     configuration:
       conf_quad_mode: Disable
-    definition: Atmel:Generic_SPI_NOR_Flash:0.0.1::N25Q256A
+    definition: Atmel:Generic_SPI_NOR_Flash:0.0.1::S25FL116K
     functionality: SPI_NOR_Flash
-    api: Flash:SPI-NOR-Flash:N25Q256A
+    api: Flash:SPI-NOR-Flash:S25FL116K
     dependencies:
       QSPI instance: QUAD_SPI_0
 drivers:
@@ -581,150 +581,6 @@ drivers:
     variant: null
     clocks:
       domain_group: null
-  EXTERNAL_IRQ_0:
-    user_label: EXTERNAL_IRQ_0
-    definition: Atmel:SAMD51_Drivers:0.0.1::SAMD51G19A-MF::EIC::driver_config_definition::Default::HAL:Driver:Ext.IRQ
-    functionality: External_IRQ
-    api: HAL:Driver:Ext_IRQ
-    configuration:
-      eic_arch_asynch0: false
-      eic_arch_asynch1: false
-      eic_arch_asynch10: false
-      eic_arch_asynch11: false
-      eic_arch_asynch12: false
-      eic_arch_asynch13: false
-      eic_arch_asynch14: false
-      eic_arch_asynch15: false
-      eic_arch_asynch2: false
-      eic_arch_asynch3: false
-      eic_arch_asynch4: false
-      eic_arch_asynch5: false
-      eic_arch_asynch6: false
-      eic_arch_asynch7: false
-      eic_arch_asynch8: false
-      eic_arch_asynch9: false
-      eic_arch_cksel: Clocked by GCLK
-      eic_arch_debounce_enable0: false
-      eic_arch_debounce_enable1: false
-      eic_arch_debounce_enable10: false
-      eic_arch_debounce_enable11: false
-      eic_arch_debounce_enable12: false
-      eic_arch_debounce_enable13: false
-      eic_arch_debounce_enable14: false
-      eic_arch_debounce_enable15: false
-      eic_arch_debounce_enable2: false
-      eic_arch_debounce_enable3: false
-      eic_arch_debounce_enable4: false
-      eic_arch_debounce_enable5: false
-      eic_arch_debounce_enable6: false
-      eic_arch_debounce_enable7: false
-      eic_arch_debounce_enable8: false
-      eic_arch_debounce_enable9: false
-      eic_arch_enable_irq_setting0: false
-      eic_arch_enable_irq_setting1: false
-      eic_arch_enable_irq_setting10: false
-      eic_arch_enable_irq_setting11: false
-      eic_arch_enable_irq_setting12: false
-      eic_arch_enable_irq_setting13: false
-      eic_arch_enable_irq_setting14: false
-      eic_arch_enable_irq_setting15: false
-      eic_arch_enable_irq_setting2: false
-      eic_arch_enable_irq_setting3: false
-      eic_arch_enable_irq_setting4: false
-      eic_arch_enable_irq_setting5: false
-      eic_arch_enable_irq_setting6: false
-      eic_arch_enable_irq_setting7: false
-      eic_arch_enable_irq_setting8: false
-      eic_arch_enable_irq_setting9: false
-      eic_arch_extinteo0: false
-      eic_arch_extinteo1: false
-      eic_arch_extinteo10: false
-      eic_arch_extinteo11: false
-      eic_arch_extinteo12: false
-      eic_arch_extinteo13: false
-      eic_arch_extinteo14: false
-      eic_arch_extinteo15: false
-      eic_arch_extinteo2: false
-      eic_arch_extinteo3: false
-      eic_arch_extinteo4: false
-      eic_arch_extinteo5: false
-      eic_arch_extinteo6: false
-      eic_arch_extinteo7: false
-      eic_arch_extinteo8: false
-      eic_arch_extinteo9: false
-      eic_arch_filten0: false
-      eic_arch_filten1: false
-      eic_arch_filten10: false
-      eic_arch_filten11: false
-      eic_arch_filten12: false
-      eic_arch_filten13: false
-      eic_arch_filten14: false
-      eic_arch_filten15: false
-      eic_arch_filten2: false
-      eic_arch_filten3: false
-      eic_arch_filten4: false
-      eic_arch_filten5: false
-      eic_arch_filten6: false
-      eic_arch_filten7: false
-      eic_arch_filten8: false
-      eic_arch_filten9: false
-      eic_arch_nmi_ctrl: false
-      eic_arch_nmiasynch: false
-      eic_arch_nmifilten: false
-      eic_arch_nmisense: No detection
-      eic_arch_prescaler0: Divided by 2
-      eic_arch_prescaler1: Divided by 2
-      eic_arch_sense0: No detection
-      eic_arch_sense1: No detection
-      eic_arch_sense10: No detection
-      eic_arch_sense11: No detection
-      eic_arch_sense12: No detection
-      eic_arch_sense13: No detection
-      eic_arch_sense14: No detection
-      eic_arch_sense15: No detection
-      eic_arch_sense2: No detection
-      eic_arch_sense3: No detection
-      eic_arch_sense4: No detection
-      eic_arch_sense5: No detection
-      eic_arch_sense6: No detection
-      eic_arch_sense7: No detection
-      eic_arch_sense8: No detection
-      eic_arch_sense9: No detection
-      eic_arch_states0: '3'
-      eic_arch_states1: '3'
-      eic_arch_tickon: The sampling rate is EIC clock
-    optional_signals:
-    - identifier: EXTERNAL_IRQ_0:EXTINT/5
-      pad: PA05
-      mode: Enabled
-      configuration: null
-      definition: Atmel:SAMD51_Drivers:0.0.1::SAMD51G19A-MF::optional_signal_definition::EIC.EXTINT.5
-      name: EIC/EXTINT/5
-      label: EXTINT/5
-    - identifier: EXTERNAL_IRQ_0:EXTINT/6
-      pad: PA06
-      mode: Enabled
-      configuration: null
-      definition: Atmel:SAMD51_Drivers:0.0.1::SAMD51G19A-MF::optional_signal_definition::EIC.EXTINT.6
-      name: EIC/EXTINT/6
-      label: EXTINT/6
-    - identifier: EXTERNAL_IRQ_0:EXTINT/7
-      pad: PA07
-      mode: Enabled
-      configuration: null
-      definition: Atmel:SAMD51_Drivers:0.0.1::SAMD51G19A-MF::optional_signal_definition::EIC.EXTINT.7
-      name: EIC/EXTINT/7
-      label: EXTINT/7
-    variant: null
-    clocks:
-      domain_group:
-        nodes:
-        - name: EIC
-          input: Generic clock generator 0
-          external: false
-          external_frequency: 0
-        configuration:
-          eic_gclk_selection: Generic clock generator 0
   GCLK:
     user_label: GCLK
     definition: Atmel:SAMD51_Drivers:0.0.1::SAMD51G19A-MF::GCLK::driver_config_definition::GCLK::HAL:HPL:GCLK
@@ -1045,7 +901,7 @@ drivers:
     api: HAL:Driver:QSPI_Sync
     configuration:
       qspi_advanced: false
-      qspi_baud_rate: 8000000
+      qspi_baud_rate: 4000000
       qspi_cpha: Data is changed on the leading edge of SPCK and captured on the following
         edge of SPCK.
       qspi_cpol: The inactive state value of SPCK is logic level zero.
@@ -1163,9 +1019,53 @@ drivers:
           external_frequency: 0
         configuration:
           rtc_clk_selection: RTC source
+  SPI_0:
+    user_label: SPI_0
+    definition: Atmel:SAMD51_Drivers:0.0.1::SAMD51G19A-MF::SERCOM0::driver_config_definition::SPI.Master::HAL:Driver:SPI.Master.Sync
+    functionality: SPI
+    api: HAL:Driver:SPI_Master_Sync
+    configuration:
+      spi_master_advanced: false
+      spi_master_arch_cpha: Sample input on leading edge
+      spi_master_arch_cpol: SCK is low when idle
+      spi_master_arch_dbgstop: Keep running
+      spi_master_arch_dord: MSB first
+      spi_master_arch_ibon: In data stream
+      spi_master_arch_runstdby: false
+      spi_master_baud_rate: 4000000
+      spi_master_character_size: 8 bits
+      spi_master_dummybyte: 511
+      spi_master_rx_enable: true
+    optional_signals: []
+    variant:
+      specification: TXPO=0, RXPO=2
+      required_signals:
+      - name: SERCOM0/PAD/0
+        pad: PA04
+        label: MOSI
+      - name: SERCOM0/PAD/1
+        pad: PA05
+        label: SCK
+      - name: SERCOM0/PAD/2
+        pad: PA06
+        label: MISO
+    clocks:
+      domain_group:
+        nodes:
+        - name: Core
+          input: Generic clock generator 0
+          external: false
+          external_frequency: 0
+        - name: Slow
+          input: Generic clock generator 3
+          external: false
+          external_frequency: 0
+        configuration:
+          core_gclk_selection: Generic clock generator 0
+          slow_gclk_selection: Generic clock generator 3
   I2C_0:
     user_label: I2C_0
-    definition: Atmel:SAMD51_Drivers:0.0.1::SAMD51G19A-MF::SERCOM5::driver_config_definition::I2C.Slave.Standard~2FFast-mode::HAL:Driver:I2C.Slave.Sync
+    definition: Atmel:SAMD51_Drivers:0.0.1::SAMD51G19A-MF::SERCOM3::driver_config_definition::I2C.Slave.Standard~2FFast-mode::HAL:Driver:I2C.Slave.Sync
     functionality: I2C
     api: HAL:Driver:I2C_Slave_Sync
     configuration:
@@ -1184,11 +1084,11 @@ drivers:
     variant:
       specification: SDA=0, SCL=1
       required_signals:
-      - name: SERCOM5/PAD/0
-        pad: PA23
+      - name: SERCOM3/PAD/0
+        pad: PA17
         label: SDA
-      - name: SERCOM5/PAD/1
-        pad: PA22
+      - name: SERCOM3/PAD/1
+        pad: PA16
         label: SCL
     clocks:
       domain_group:
@@ -1218,10 +1118,16 @@ drivers:
     clocks:
       domain_group: null
 pads:
+  PA04:
+    name: PA04
+    definition: Atmel:SAMD51_Drivers:0.0.1::SAMD51G19A-MF::pad::PA04
+    mode: Digital output
+    user_label: PA04
+    configuration: null
   PA05:
     name: PA05
     definition: Atmel:SAMD51_Drivers:0.0.1::SAMD51G19A-MF::pad::PA05
-    mode: Digital input
+    mode: Digital output
     user_label: PA05
     configuration: null
   PA06:
@@ -1229,12 +1135,6 @@ pads:
     definition: Atmel:SAMD51_Drivers:0.0.1::SAMD51G19A-MF::pad::PA06
     mode: Digital input
     user_label: PA06
-    configuration: null
-  PA07:
-    name: PA07
-    definition: Atmel:SAMD51_Drivers:0.0.1::SAMD51G19A-MF::pad::PA07
-    mode: Digital input
-    user_label: PA07
     configuration: null
   PA08:
     name: PA08
@@ -1272,16 +1172,16 @@ pads:
     mode: Digital input
     user_label: PB11
     configuration: null
-  PA22:
-    name: PA22
-    definition: Atmel:SAMD51_Drivers:0.0.1::SAMD51G19A-MF::pad::PA22
+  PA16:
+    name: PA16
+    definition: Atmel:SAMD51_Drivers:0.0.1::SAMD51G19A-MF::pad::PA16
     mode: I2C
-    user_label: PA22
+    user_label: PA16
     configuration: null
-  PA23:
-    name: PA23
-    definition: Atmel:SAMD51_Drivers:0.0.1::SAMD51G19A-MF::pad::PA23
+  PA17:
+    name: PA17
+    definition: Atmel:SAMD51_Drivers:0.0.1::SAMD51G19A-MF::pad::PA17
     mode: I2C
-    user_label: PA23
+    user_label: PA17
     configuration: null
 toolchain_options: []

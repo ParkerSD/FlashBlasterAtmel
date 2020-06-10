@@ -42,16 +42,15 @@
       <description>Atmel Start Framework</description>
       <RTE_Components_h>#define ATMEL_START</RTE_Components_h>
       <files>
-        <file category="doc" condition="ARMCC, GCC, IAR" name="hal/documentation/ext_irq.rst"/>
         <file category="doc" condition="ARMCC, GCC, IAR" name="hal/documentation/flash.rst"/>
         <file category="doc" condition="ARMCC, GCC, IAR" name="hal/documentation/i2c_slave_sync.rst"/>
         <file category="doc" condition="ARMCC, GCC, IAR" name="hal/documentation/quad_spi_sync.rst"/>
+        <file category="doc" condition="ARMCC, GCC, IAR" name="hal/documentation/spi_master_sync.rst"/>
         <file category="doc" condition="ARMCC, GCC, IAR" name="hal/documentation/timer.rst"/>
         <file category="doc" condition="ARMCC, GCC, IAR" name="hal/documentation/wdt.rst"/>
         <file category="header" condition="ARMCC, GCC, IAR" name="hal/include/hal_atomic.h"/>
         <file category="header" condition="ARMCC, GCC, IAR" name="hal/include/hal_cache.h"/>
         <file category="header" condition="ARMCC, GCC, IAR" name="hal/include/hal_delay.h"/>
-        <file category="header" condition="ARMCC, GCC, IAR" name="hal/include/hal_ext_irq.h"/>
         <file category="header" condition="ARMCC, GCC, IAR" name="hal/include/hal_flash.h"/>
         <file category="header" condition="ARMCC, GCC, IAR" name="hal/include/hal_gpio.h"/>
         <file category="header" condition="ARMCC, GCC, IAR" name="hal/include/hal_i2c_s_sync.h"/>
@@ -59,12 +58,12 @@
         <file category="header" condition="ARMCC, GCC, IAR" name="hal/include/hal_io.h"/>
         <file category="header" condition="ARMCC, GCC, IAR" name="hal/include/hal_qspi_sync.h"/>
         <file category="header" condition="ARMCC, GCC, IAR" name="hal/include/hal_sleep.h"/>
+        <file category="header" condition="ARMCC, GCC, IAR" name="hal/include/hal_spi_m_sync.h"/>
         <file category="header" condition="ARMCC, GCC, IAR" name="hal/include/hal_wdt.h"/>
         <file category="header" condition="ARMCC, GCC, IAR" name="hal/include/hpl_cmcc.h"/>
         <file category="header" condition="ARMCC, GCC, IAR" name="hal/include/hpl_core.h"/>
         <file category="header" condition="ARMCC, GCC, IAR" name="hal/include/hpl_delay.h"/>
         <file category="header" condition="ARMCC, GCC, IAR" name="hal/include/hpl_dma.h"/>
-        <file category="header" condition="ARMCC, GCC, IAR" name="hal/include/hpl_ext_irq.h"/>
         <file category="header" condition="ARMCC, GCC, IAR" name="hal/include/hpl_flash.h"/>
         <file category="header" condition="ARMCC, GCC, IAR" name="hal/include/hpl_gpio.h"/>
         <file category="header" condition="ARMCC, GCC, IAR" name="hal/include/hpl_i2c_m_async.h"/>
@@ -80,6 +79,7 @@
         <file category="header" condition="ARMCC, GCC, IAR" name="hal/include/hpl_sleep.h"/>
         <file category="header" condition="ARMCC, GCC, IAR" name="hal/include/hpl_spi.h"/>
         <file category="header" condition="ARMCC, GCC, IAR" name="hal/include/hpl_spi_async.h"/>
+        <file category="header" condition="ARMCC, GCC, IAR" name="hal/include/hpl_spi_dma.h"/>
         <file category="header" condition="ARMCC, GCC, IAR" name="hal/include/hpl_spi_sync.h"/>
         <file category="header" condition="ARMCC, GCC, IAR" name="hal/include/hpl_usart.h"/>
         <file category="header" condition="ARMCC, GCC, IAR" name="hal/include/hpl_user_area.h"/>
@@ -148,8 +148,8 @@
         <file category="header" condition="ARMCC, GCC, IAR" name="hri/hri_usb_d51.h"/>
         <file category="header" condition="ARMCC, GCC, IAR" name="hri/hri_wdt_d51.h"/>
         <file category="doc" condition="ARMCC, GCC, IAR" name="documentation/spi_nor_flash.rst"/>
-        <file category="source" condition="ARMCC, GCC, IAR" name="spi_nor_flash/n25q256a/n25q256a.c"/>
-        <file category="header" condition="ARMCC, GCC, IAR" name="spi_nor_flash/n25q256a/n25q256a.h"/>
+        <file category="source" condition="ARMCC, GCC, IAR" name="spi_nor_flash/s25fl116k/s25fl116k.c"/>
+        <file category="header" condition="ARMCC, GCC, IAR" name="spi_nor_flash/s25fl116k/s25fl116k.h"/>
         <file category="source" condition="ARMCC, GCC, IAR" name="spi_nor_flash/spi_nor_flash.c"/>
         <file category="header" condition="ARMCC, GCC, IAR" name="spi_nor_flash/spi_nor_flash.h"/>
         <file category="source" condition="ARMCC, GCC, IAR" name="main.c"/>
@@ -170,7 +170,7 @@
         <file category="header" condition="ARMCC, GCC, IAR" name="hal/include/hpl_timer.h"/>
         <file category="header" condition="ARMCC, GCC, IAR" name="hal/include/hpl_usart_async.h"/>
         <file category="header" condition="ARMCC, GCC, IAR" name="hal/include/hpl_usart_sync.h"/>
-        <file category="source" condition="ARMCC, GCC, IAR" name="hal/src/hal_ext_irq.c"/>
+        <file category="source" condition="ARMCC, GCC, IAR" name="hal/src/hal_spi_m_sync.c"/>
         <file category="source" condition="ARMCC, GCC, IAR" name="hal/src/hal_timer.c"/>
         <file category="header" condition="ARMCC, GCC, IAR" name="hal/utils/include/parts.h"/>
         <file category="source" condition="ARMCC, GCC, IAR" name="hpl/cmcc/hpl_cmcc.c"/>
@@ -178,7 +178,6 @@
         <file category="header" condition="ARMCC, GCC, IAR" name="hpl/core/hpl_core_port.h"/>
         <file category="source" condition="ARMCC, GCC, IAR" name="hpl/core/hpl_init.c"/>
         <file category="source" condition="ARMCC, GCC, IAR" name="hpl/dmac/hpl_dmac.c"/>
-        <file category="source" condition="ARMCC, GCC, IAR" name="hpl/eic/hpl_eic.c"/>
         <file category="source" condition="ARMCC, GCC, IAR" name="hpl/gclk/hpl_gclk.c"/>
         <file category="header" condition="ARMCC, GCC, IAR" name="hpl/gclk/hpl_gclk_base.h"/>
         <file category="source" condition="ARMCC, GCC, IAR" name="hpl/mclk/hpl_mclk.c"/>
@@ -201,7 +200,6 @@
         <file category="source" condition="ARMCC, GCC, IAR" name="atmel_start.c"/>
         <file attr="config" category="header" condition="ARMCC, GCC, IAR" name="config/hpl_cmcc_config.h"/>
         <file attr="config" category="header" condition="ARMCC, GCC, IAR" name="config/hpl_dmac_config.h"/>
-        <file attr="config" category="header" condition="ARMCC, GCC, IAR" name="config/hpl_eic_config.h"/>
         <file attr="config" category="header" condition="ARMCC, GCC, IAR" name="config/hpl_gclk_config.h"/>
         <file attr="config" category="header" condition="ARMCC, GCC, IAR" name="config/hpl_mclk_config.h"/>
         <file attr="config" category="header" condition="ARMCC, GCC, IAR" name="config/hpl_nvmctrl_config.h"/>
@@ -222,7 +220,6 @@
         <file category="include" condition="ARMCC, GCC, IAR" name="hpl/cmcc"/>
         <file category="include" condition="ARMCC, GCC, IAR" name="hpl/core"/>
         <file category="include" condition="ARMCC, GCC, IAR" name="hpl/dmac"/>
-        <file category="include" condition="ARMCC, GCC, IAR" name="hpl/eic"/>
         <file category="include" condition="ARMCC, GCC, IAR" name="hpl/gclk"/>
         <file category="include" condition="ARMCC, GCC, IAR" name="hpl/mclk"/>
         <file category="include" condition="ARMCC, GCC, IAR" name="hpl/nvmctrl"/>
@@ -239,7 +236,7 @@
         <file category="include" condition="ARMCC, GCC, IAR" name=""/>
         <file category="include" condition="ARMCC, GCC, IAR" name="config"/>
         <file category="include" condition="ARMCC, GCC, IAR" name="spi_nor_flash"/>
-        <file category="include" condition="ARMCC, GCC, IAR" name="spi_nor_flash/n25q256a"/>
+        <file category="include" condition="ARMCC, GCC, IAR" name="spi_nor_flash/s25fl116k"/>
         <file category="include" condition="ARMCC, GCC, IAR" name=""/>
       </files>
     </component>

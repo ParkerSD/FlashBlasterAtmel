@@ -124,16 +124,17 @@ spi_nor_flash_main.d spi_nor_flash_main.o: .././spi_nor_flash_main.c \
  ../hal/include/hpl_reset.h ../hal/include/hpl_sleep.h \
  ../hal/include/hal_init.h ../hal/include/hpl_init.h \
  ../hal/include/hal_io.h ../hal/include/hal_sleep.h \
- ../hal/include/hal_ext_irq.h ../hal/include/hpl_ext_irq.h \
  ../hal/include/hal_flash.h ../hal/include/hpl_flash.h \
  ../hal/include/hpl_irq.h ../hal/include/hal_qspi_sync.h \
  ../hal/include/hpl_qspi_sync.h ../hal/include/hpl_qspi.h \
  ../hal/include/hal_timer.h ../hal/utils/include/utils_list.h \
- ../hal/include/hpl_timer.h ../hal/include/hal_i2c_s_sync.h \
- ../hal/include/hpl_i2c_s_sync.h ../hal/include/hal_wdt.h \
- ../hal/include/hpl_wdt.h .././spi_nor_flash_main.h \
- ../spi_nor_flash/n25q256a/n25q256a.h ../spi_nor_flash/spi_nor_flash.h \
- ../Config/conf_spi_nor_flash.h
+ ../hal/include/hpl_timer.h ../hal/include/hal_spi_m_sync.h \
+ ../hal/include/hpl_spi_m_sync.h ../hal/include/hpl_spi.h \
+ ../hal/utils/include/utils.h ../hal/include/hpl_spi_sync.h \
+ ../hal/include/hal_i2c_s_sync.h ../hal/include/hpl_i2c_s_sync.h \
+ ../hal/include/hal_wdt.h ../hal/include/hpl_wdt.h \
+ .././spi_nor_flash_main.h ../spi_nor_flash/s25fl116k/s25fl116k.h \
+ ../spi_nor_flash/spi_nor_flash.h ../Config/conf_spi_nor_flash.h
 
 .././atmel_start.h:
 
@@ -451,10 +452,6 @@ C:\Program\ Files\ (x86)\Atmel\Studio\7.0\Packs\Atmel\SAMD51_DFP\1.2.139\samd51a
 
 ../hal/include/hal_sleep.h:
 
-../hal/include/hal_ext_irq.h:
-
-../hal/include/hpl_ext_irq.h:
-
 ../hal/include/hal_flash.h:
 
 ../hal/include/hpl_flash.h:
@@ -473,6 +470,16 @@ C:\Program\ Files\ (x86)\Atmel\Studio\7.0\Packs\Atmel\SAMD51_DFP\1.2.139\samd51a
 
 ../hal/include/hpl_timer.h:
 
+../hal/include/hal_spi_m_sync.h:
+
+../hal/include/hpl_spi_m_sync.h:
+
+../hal/include/hpl_spi.h:
+
+../hal/utils/include/utils.h:
+
+../hal/include/hpl_spi_sync.h:
+
 ../hal/include/hal_i2c_s_sync.h:
 
 ../hal/include/hpl_i2c_s_sync.h:
@@ -483,7 +490,7 @@ C:\Program\ Files\ (x86)\Atmel\Studio\7.0\Packs\Atmel\SAMD51_DFP\1.2.139\samd51a
 
 .././spi_nor_flash_main.h:
 
-../spi_nor_flash/n25q256a/n25q256a.h:
+../spi_nor_flash/s25fl116k/s25fl116k.h:
 
 ../spi_nor_flash/spi_nor_flash.h:
 

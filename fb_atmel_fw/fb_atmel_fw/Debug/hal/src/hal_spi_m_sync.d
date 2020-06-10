@@ -1,6 +1,6 @@
-spi_nor_flash/n25q256a/n25q256a.d spi_nor_flash/n25q256a/n25q256a.o: \
- ../spi_nor_flash/n25q256a/n25q256a.c ../hal/include/hal_gpio.h \
- ../hal/include/hpl_gpio.h ../hal/utils/include/compiler.h \
+hal/src/hal_spi_m_sync.d hal/src/hal_spi_m_sync.o: \
+ ../hal/src/hal_spi_m_sync.c ../hal/include/hal_spi_m_sync.h \
+ ../hal/include/hal_io.h ../hal/utils/include/compiler.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\lib\gcc\arm-none-eabi\6.3.1\include\stddef.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\lib\gcc\arm-none-eabi\6.3.1\include\stdint.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\stdint.h \
@@ -117,15 +117,13 @@ spi_nor_flash/n25q256a/n25q256a.d spi_nor_flash/n25q256a/n25q256a.o: \
  ../hri/hri_sdhc_d51.h ../hri/hri_sercom_d51.h ../hri/hri_supc_d51.h \
  ../hri/hri_tc_d51.h ../hri/hri_tcc_d51.h ../hri/hri_trng_d51.h \
  ../hri/hri_usb_d51.h ../hri/hri_wdt_d51.h \
- ../hal/utils/include/err_codes.h ../hpl/port/hpl_gpio_base.h \
- ../hal/utils/include/utils_assert.h ../Config/hpl_port_config.h \
- ../hal/include/hal_qspi_sync.h ../hal/include/hpl_qspi_sync.h \
- ../hal/include/hpl_qspi.h ../spi_nor_flash/spi_nor_flash.h \
- ../spi_nor_flash/n25q256a/n25q256a.h
+ ../hal/utils/include/err_codes.h ../hal/include/hpl_spi_m_sync.h \
+ ../hal/include/hpl_spi.h ../hal/utils/include/utils.h \
+ ../hal/include/hpl_spi_sync.h ../hal/utils/include/utils_assert.h
 
-../hal/include/hal_gpio.h:
+../hal/include/hal_spi_m_sync.h:
 
-../hal/include/hpl_gpio.h:
+../hal/include/hal_io.h:
 
 ../hal/utils/include/compiler.h:
 
@@ -411,18 +409,12 @@ C:\Program\ Files\ (x86)\Atmel\Studio\7.0\Packs\Atmel\SAMD51_DFP\1.2.139\samd51a
 
 ../hal/utils/include/err_codes.h:
 
-../hpl/port/hpl_gpio_base.h:
+../hal/include/hpl_spi_m_sync.h:
+
+../hal/include/hpl_spi.h:
+
+../hal/utils/include/utils.h:
+
+../hal/include/hpl_spi_sync.h:
 
 ../hal/utils/include/utils_assert.h:
-
-../Config/hpl_port_config.h:
-
-../hal/include/hal_qspi_sync.h:
-
-../hal/include/hpl_qspi_sync.h:
-
-../hal/include/hpl_qspi.h:
-
-../spi_nor_flash/spi_nor_flash.h:
-
-../spi_nor_flash/n25q256a/n25q256a.h:

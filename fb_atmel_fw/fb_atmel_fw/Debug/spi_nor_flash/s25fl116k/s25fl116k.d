@@ -1,6 +1,6 @@
-hal/src/hal_ext_irq.d hal/src/hal_ext_irq.o: ../hal/src/hal_ext_irq.c \
- ../hal/include/hal_ext_irq.h ../hal/include/hpl_ext_irq.h \
- ../hal/utils/include/compiler.h \
+spi_nor_flash/s25fl116k/s25fl116k.d spi_nor_flash/s25fl116k/s25fl116k.o: \
+ ../spi_nor_flash/s25fl116k/s25fl116k.c ../hal/include/hal_gpio.h \
+ ../hal/include/hpl_gpio.h ../hal/utils/include/compiler.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\lib\gcc\arm-none-eabi\6.3.1\include\stddef.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\lib\gcc\arm-none-eabi\6.3.1\include\stdint.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\stdint.h \
@@ -117,11 +117,15 @@ hal/src/hal_ext_irq.d hal/src/hal_ext_irq.o: ../hal/src/hal_ext_irq.c \
  ../hri/hri_sdhc_d51.h ../hri/hri_sercom_d51.h ../hri/hri_supc_d51.h \
  ../hri/hri_tc_d51.h ../hri/hri_tcc_d51.h ../hri/hri_trng_d51.h \
  ../hri/hri_usb_d51.h ../hri/hri_wdt_d51.h \
- ../hal/utils/include/err_codes.h
+ ../hal/utils/include/err_codes.h ../hpl/port/hpl_gpio_base.h \
+ ../hal/utils/include/utils_assert.h ../Config/hpl_port_config.h \
+ ../hal/include/hal_qspi_sync.h ../hal/include/hpl_qspi_sync.h \
+ ../hal/include/hpl_qspi.h ../spi_nor_flash/spi_nor_flash.h \
+ ../spi_nor_flash/s25fl116k/s25fl116k.h
 
-../hal/include/hal_ext_irq.h:
+../hal/include/hal_gpio.h:
 
-../hal/include/hpl_ext_irq.h:
+../hal/include/hpl_gpio.h:
 
 ../hal/utils/include/compiler.h:
 
@@ -406,3 +410,19 @@ C:\Program\ Files\ (x86)\Atmel\Studio\7.0\Packs\Atmel\SAMD51_DFP\1.2.139\samd51a
 ../hri/hri_wdt_d51.h:
 
 ../hal/utils/include/err_codes.h:
+
+../hpl/port/hpl_gpio_base.h:
+
+../hal/utils/include/utils_assert.h:
+
+../Config/hpl_port_config.h:
+
+../hal/include/hal_qspi_sync.h:
+
+../hal/include/hpl_qspi_sync.h:
+
+../hal/include/hpl_qspi.h:
+
+../spi_nor_flash/spi_nor_flash.h:
+
+../spi_nor_flash/s25fl116k/s25fl116k.h:
