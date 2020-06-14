@@ -401,3 +401,23 @@ void nor_flash_qspi_init(void)
 	QUAD_SPI_0_init();
 	spi_nor_flash_init();
 }
+
+void SWD_GPIO_init(void)
+{
+	gpio_set_pin_direction(MOSI_EN, GPIO_DIRECTION_OUT);
+	gpio_set_pin_level(MOSI_EN, true);
+	gpio_set_pin_pull_mode(MOSI_EN, GPIO_PULL_OFF);
+	
+	gpio_set_pin_direction(MISO_EN, GPIO_DIRECTION_OUT);
+	gpio_set_pin_level(MISO_EN, false);
+	gpio_set_pin_pull_mode(MISO_EN, GPIO_PULL_OFF);
+	
+	gpio_set_pin_direction(RST_SENSE, GPIO_DIRECTION_IN);
+	gpio_set_pin_pull_mode(RST_SENSE, GPIO_PULL_OFF);
+	
+	gpio_set_pin_direction(RST, GPIO_DIRECTION_OUT);
+	gpio_set_pin_level(RST, false);
+	gpio_set_pin_pull_mode(RST, GPIO_PULL_OFF);
+	
+	
+}

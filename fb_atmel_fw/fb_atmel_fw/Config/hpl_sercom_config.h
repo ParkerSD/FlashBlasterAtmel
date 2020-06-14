@@ -37,7 +37,7 @@
 // <i> The SPI data transfer rate
 // <id> spi_master_baud_rate
 #ifndef CONF_SERCOM_0_SPI_BAUD
-#define CONF_SERCOM_0_SPI_BAUD 4000000
+#define CONF_SERCOM_0_SPI_BAUD 50000
 #endif
 
 // </h>
@@ -45,7 +45,7 @@
 // <e> Advanced Configuration
 // <id> spi_master_advanced
 #ifndef CONF_SERCOM_0_SPI_ADVANCED
-#define CONF_SERCOM_0_SPI_ADVANCED 0
+#define CONF_SERCOM_0_SPI_ADVANCED 1
 #endif
 
 // <o> Dummy byte <0x00-0x1ff>
@@ -61,7 +61,7 @@
 // <i> I least significant or most significant bit is shifted out first (DORD)
 // <id> spi_master_arch_dord
 #ifndef CONF_SERCOM_0_SPI_DORD
-#define CONF_SERCOM_0_SPI_DORD 0x0
+#define CONF_SERCOM_0_SPI_DORD 0x1 // changed
 #endif
 
 // <o> Clock Polarity

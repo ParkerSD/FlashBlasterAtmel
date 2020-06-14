@@ -83,18 +83,52 @@ void TIMER_0_example(void)
 	timer_start(&TIMER_0);
 }
 
-/**
- * Example of using SPI_0 to write "Hello World" using the IO abstraction.
- */
-static uint8_t example_SPI_0[12] = "Hello World!";
 
-void SPI_0_example(void)
-{
+void SWD_tx(uint8_t* buffer, uint16_t length) //SPI MOSI
+{	
+	gpio_set_pin_level(MOSI_EN, true);
+	gpio_set_pin_level(MISO_EN, false);
+	
 	struct io_descriptor *io;
 	spi_m_sync_get_io_descriptor(&SPI_0, &io);
 
 	spi_m_sync_enable(&SPI_0);
-	io_write(io, example_SPI_0, 12);
+	io_write(io, buffer, length);
+}
+
+void SWD_rx(uint8_t* buffer, uint16_t length) //SPI MISO
+{
+	gpio_set_pin_level(MOSI_EN, false);
+	gpio_set_pin_level(MISO_EN, true);
+	
+	struct io_descriptor *io;
+	spi_m_sync_get_io_descriptor(&SPI_0, &io);
+
+	spi_m_sync_enable(&SPI_0);
+	io_read(io, buffer, length);
+}
+
+void SPI_transfer_tx(uint8_t* buffer, uint32_t size) // uses spi_m_sync_trans driver - hpl level 
+{
+		/*
+			struct spi_msg {
+			// Pointer to the output data buffer 
+			uint8_t *txbuf;
+			// Pointer to the input data buffer 
+			uint8_t *rxbuf;
+			// Size of the message data in SPI characters 
+			uint32_t size;
+			};
+		*/
+	struct spi_msg spi_istruct;
+	spi_istruct.txbuf = buffer; 
+	spi_istruct.rxbuf = NULL;
+	spi_istruct.size = size; 
+				//transfer message without interrupt 
+	gpio_set_pin_level(MOSI_EN, true);
+	gpio_set_pin_level(MISO_EN, false);
+	spi_m_sync_enable(&SPI_0);
+	_spi_m_sync_trans(&SPI_0.dev, &spi_istruct);//(struct _spi_m_sync_dev *dev, const struct spi_msg *msg);
 }
 
 void I2C_read(uint8_t* buffer, uint16_t length)

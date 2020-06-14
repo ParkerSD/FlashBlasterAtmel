@@ -23,6 +23,12 @@ void QUAD_SPI_0_example(void);
 
 void TIMER_0_example(void);
 
+void SWD_tx(uint8_t* buffer, uint16_t length);
+
+void SWD_rx(uint8_t* buffer, uint16_t length);
+
+void SPI_transfer_tx(uint8_t* buffer, uint32_t size);
+
 void I2C_read(uint8_t* buffer, uint16_t length);
 
 void WDT_0_example(void);

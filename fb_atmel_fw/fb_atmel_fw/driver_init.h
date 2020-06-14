@@ -42,6 +42,8 @@ extern struct i2c_s_sync_descriptor I2C_0;
 
 extern struct wdt_descriptor WDT_0;
 
+void SWD_GPIO_init(void);
+
 void FLASH_0_init(void);
 void FLASH_0_CLOCK_init(void);
 

@@ -134,7 +134,7 @@ main.d main.o: .././main.c ../atmel_start.h ../driver_init.h \
  ../hal/include/hal_wdt.h ../hal/include/hpl_wdt.h \
  ../spi_nor_flash_main.h ../spi_nor_flash/s25fl116k/s25fl116k.h \
  ../spi_nor_flash/spi_nor_flash.h ../examples/driver_examples.h \
- .././driver_init.h .././atmel_start_pins.h
+ .././driver_init.h .././atmel_start_pins.h .././swd.h
 
 ../atmel_start.h:
 
@@ -499,3 +499,5 @@ C:\Program\ Files\ (x86)\Atmel\Studio\7.0\Packs\Atmel\SAMD51_DFP\1.2.139\samd51a
 .././driver_init.h:
 
 .././atmel_start_pins.h:
+
+.././swd.h:

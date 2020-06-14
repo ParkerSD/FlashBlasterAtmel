@@ -976,6 +976,9 @@
     <Compile Include="spi_nor_flash_main.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="swd.h">
+      <SubType>compile</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Config\" />
