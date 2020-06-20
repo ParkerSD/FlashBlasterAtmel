@@ -84,3 +84,5 @@ spi_nor_flash\spi_nor_flash.c
 
 spi_nor_flash_main.c
 
+swd.c
+

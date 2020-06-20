@@ -142,6 +142,17 @@ void I2C_read(uint8_t* buffer, uint16_t length)
 	io_read(io, buffer, length);
 }
 
+void I2C_write(uint8_t* buffer, uint16_t length)
+{
+	struct io_descriptor *io;
+	
+	i2c_s_sync_get_io_descriptor(&I2C_0, &io);
+	i2c_s_sync_set_addr(&I2C_0, I2C_ADDR);
+	i2c_s_sync_enable(&I2C_0);
+
+	io_write(io, buffer, length);
+}
+
 /**
  * Example of using WDT_0.
  */
