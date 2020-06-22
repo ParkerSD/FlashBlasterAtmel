@@ -19,7 +19,6 @@ int main(void)
 	
 	while (1) 
 	{
-		
 		I2C_read(i2c_buf, RX_LENGTH);
 		
 		nor_flash_qspi_init();
@@ -36,11 +35,14 @@ int main(void)
 				uint8_t qspi_buff[data_len]; 
 				spi_nor_flash_read(SPI_NOR_FLASH_0, qspi_buff, data_addr, data_len); // TODO: test that data is being received
 				
-				
 				//------------START - SWD VIA SPI------------//
-				//TODO: hard reset and sense 
-				swd_reset(); 
-				//TODO: JTAG-to-SWD switch with 16bit value, MSB = 0x79E7, LSB = 0xE79E, then min 5 clock cycles with swdio high 
+				
+				//target_reset();
+				//swd_reset(); 
+				//jtag_to_swd(); 
+				
+				
+				swd_reset();
 				uint32_t idcode = swd_read(req_read_idcode); // Error here, //NOTE: if sync lost (ex: no stop bit) is leaves line undriven and waits for host to retry (after some clk cycles w/ line low), or signals a reset by not driving line 
 				if(idcode == 0x00000000 || idcode == 0xFFFFFFFF)
 				{
@@ -48,6 +50,7 @@ int main(void)
 					I2C_write(error_packet, 3);
 				} 
 				
+				//swd_reset(); 
 				uint32_t _idcode = swd_read(req_read_idcode); // immediate xfer second read not working, try host holding line low after between xfers or 50 clk cycle reset followed by read-id as new re-connect sequence											
 				if(idcode == _idcode) // idcode match - neither value should be 0x00
 				{

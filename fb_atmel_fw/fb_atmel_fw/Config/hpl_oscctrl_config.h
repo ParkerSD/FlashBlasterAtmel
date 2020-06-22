@@ -404,7 +404,7 @@
 // <i> Select the clock source.
 // <id> fdpll0_ref_clock
 #ifndef CONF_FDPLL0_GCLK
-#define CONF_FDPLL0_GCLK GCLK_GENCTRL_SRC_XOSC32K
+#define CONF_FDPLL0_GCLK GCLK_GENCTRL_SRC_XOSC1 // was GCLK_GENCTRL_SRC_XOSC32K
 #endif
 
 // <h> Digital Phase Locked Loop Control
@@ -433,14 +433,14 @@
 // <i> Value of LDRFRAC is calculated using Fclk_dpll=Fckr*(LDR+1+LDRFRAC/32) formula as given in datasheet. This value is directly written in to DPLLRATIO register
 // <id> fdpll0_ldrfrac
 #ifndef CONF_FDPLL0_LDRFRAC
-#define CONF_FDPLL0_LDRFRAC 0xd
+#define CONF_FDPLL0_LDRFRAC 0x0
 #endif
 
 // <o> Loop Divider Ratio Integer Part <0x0-0x1FFF>
 // <i> Value of LDR is calculated using Fclk_dpll=Fckr*(LDR+1+LDRFRAC/32) formula as given in datasheet. This value is directly written in to DPLLRATIO register
 // <id> fdpll0_ldr
 #ifndef CONF_FDPLL0_LDR
-#define CONF_FDPLL0_LDR 0x5b7
+#define CONF_FDPLL0_LDR 0x13F // for 120mhz 
 #endif
 
 // <o> Clock Divider <0x0-0x7FF>
@@ -478,7 +478,7 @@
 // <0x7=>The Time-out if no lock within 11 ms
 // <id> fdpll0_arch_ltime
 #ifndef CONF_FDPLL0_LTIME
-#define CONF_FDPLL0_LTIME 0x0
+#define CONF_FDPLL0_LTIME 0x0 //was 0x0
 #endif
 
 // <o> Reference Clock Selection
@@ -488,7 +488,7 @@
 // <0x3=>XOSC1 clock reference
 // <id> fdpll0_arch_refclk
 #ifndef CONF_FDPLL0_REFCLK
-#define CONF_FDPLL0_REFCLK 0x1
+#define CONF_FDPLL0_REFCLK 0x1 //was 0x1
 #endif
 
 // <q> Wake Up Fast
@@ -510,7 +510,7 @@
 // <i> Indicates whether configuration for FDPLL1 is enabled or not
 // <id> enable_fdpll1
 #ifndef CONF_FDPLL1_CONFIG
-#define CONF_FDPLL1_CONFIG 0
+#define CONF_FDPLL1_CONFIG 1
 #endif
 
 // <y> Reference Clock Source
@@ -532,7 +532,7 @@
 // <i> Select the clock source.
 // <id> fdpll1_ref_clock
 #ifndef CONF_FDPLL1_GCLK
-#define CONF_FDPLL1_GCLK GCLK_GENCTRL_SRC_XOSC32K
+#define CONF_FDPLL1_GCLK GCLK_GENCTRL_SRC_XOSC1 //GCLK_GENCTRL_SRC_XOSC32K
 #endif
 
 // <h> Digital Phase Locked Loop Control
@@ -540,14 +540,14 @@
 // <i> Indicates whether Digital Phase Locked Loop is enabled or not
 // <id> fdpll1_arch_enable
 #ifndef CONF_FDPLL1_ENABLE
-#define CONF_FDPLL1_ENABLE 0
+#define CONF_FDPLL1_ENABLE 1
 #endif
 
 // <q> On Demand Control
 // <i> Indicates whether On Demand Control is enabled or not
 // <id> fdpll1_arch_ondemand
 #ifndef CONF_FDPLL1_ONDEMAND
-#define CONF_FDPLL1_ONDEMAND 0
+#define CONF_FDPLL1_ONDEMAND 1
 #endif
 
 // <q> Run in Standby
@@ -561,14 +561,14 @@
 // <i> Value of LDRFRAC is calculated using Fclk_dpll=Fckr*(LDR+1+LDRFRAC/32) formula as given in datasheet. This value is directly written in to DPLLRATIO register
 // <id> fdpll1_ldrfrac
 #ifndef CONF_FDPLL1_LDRFRAC
-#define CONF_FDPLL1_LDRFRAC 0xd
+#define CONF_FDPLL1_LDRFRAC 0x0
 #endif
 
 // <o> Loop Divider Ratio Integer Part <0x0-0x1FFF>
 // <i> Value of LDR is calculated using Fclk_dpll=Fckr*(LDR+1+LDRFRAC/32) formula as given in datasheet. This value is directly written in to DPLLRATIO register
 // <id> fdpll1_ldr
 #ifndef CONF_FDPLL1_LDR
-#define CONF_FDPLL1_LDR 0x5b7
+#define CONF_FDPLL1_LDR 0x13F
 #endif
 
 // <o> Clock Divider <0x0-0x7FF>
@@ -623,7 +623,7 @@
 // <i> Indicates whether Wake Up Fast is enabled or not
 // <id> fdpll1_arch_wuf
 #ifndef CONF_FDPLL1_WUF
-#define CONF_FDPLL1_WUF 0
+#define CONF_FDPLL1_WUF 1
 #endif
 
 // <o> Proportional Integral Filter Selection <0x0-0xF>

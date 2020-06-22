@@ -17,6 +17,8 @@
 #define req_read_idcode 0b10100101
 #define req_read_ctrl_stat 0b10110001
 
+void jtag_to_swd(void);
+void target_reset(void);
 void swd_reset(void);
 uint32_t swd_read(uint8_t);
 
