@@ -15,6 +15,8 @@ extern "C" {
 
 //error type defines 
 #define error_no_target 0x00
+#define error_no_dbg_pwr 0x01
+#define error_dbg_locked 0x02
 
 /**
  * Initializes MCU, drivers and middleware in the project

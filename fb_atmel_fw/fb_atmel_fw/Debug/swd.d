@@ -6,10 +6,10 @@ swd.d swd.o: .././swd.c .././swd.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\_newlib_version.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\sys\_intsup.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\sys\_stdint.h \
+ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\lib\gcc\arm-none-eabi\6.3.1\include\stdbool.h \
  .././driver_init.h .././atmel_start_pins.h ../hal/include/hal_gpio.h \
  ../hal/include/hpl_gpio.h ../hal/utils/include/compiler.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\lib\gcc\arm-none-eabi\6.3.1\include\stddef.h \
- c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\lib\gcc\arm-none-eabi\6.3.1\include\stdbool.h \
  ../hal/utils/include/parts.h \
  C:\Program\ Files\ (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include/samd51.h \
  C:\Program\ Files\ (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include/samd51g19a.h \
@@ -131,8 +131,9 @@ swd.d swd.o: .././swd.c .././swd.h \
  ../hal/include/hpl_spi_m_sync.h ../hal/include/hpl_spi.h \
  ../hal/utils/include/utils.h ../hal/include/hpl_spi_sync.h \
  ../hal/include/hal_i2c_s_sync.h ../hal/include/hpl_i2c_s_sync.h \
- ../hal/include/hal_wdt.h ../hal/include/hpl_wdt.h \
- ../examples/driver_examples.h
+ ../hal/include/hal_wdt.h ../hal/include/hpl_wdt.h .././atmel_start.h \
+ .././spi_nor_flash_main.h ../spi_nor_flash/s25fl116k/s25fl116k.h \
+ ../spi_nor_flash/spi_nor_flash.h ../examples/driver_examples.h
 
 .././swd.h:
 
@@ -150,6 +151,8 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-no
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\sys\_stdint.h:
 
+c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\lib\gcc\arm-none-eabi\6.3.1\include\stdbool.h:
+
 .././driver_init.h:
 
 .././atmel_start_pins.h:
@@ -161,8 +164,6 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-no
 ../hal/utils/include/compiler.h:
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\lib\gcc\arm-none-eabi\6.3.1\include\stddef.h:
-
-c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\lib\gcc\arm-none-eabi\6.3.1\include\stdbool.h:
 
 ../hal/utils/include/parts.h:
 
@@ -485,5 +486,13 @@ C:\Program\ Files\ (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a
 ../hal/include/hal_wdt.h:
 
 ../hal/include/hpl_wdt.h:
+
+.././atmel_start.h:
+
+.././spi_nor_flash_main.h:
+
+../spi_nor_flash/s25fl116k/s25fl116k.h:
+
+../spi_nor_flash/spi_nor_flash.h:
 
 ../examples/driver_examples.h:
