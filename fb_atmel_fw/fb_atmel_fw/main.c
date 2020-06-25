@@ -38,8 +38,7 @@ int main(void)
 				spi_nor_flash_read(SPI_NOR_FLASH_0, qspi_buff, data_addr, data_len); 
 				
 				//------------START - SWD VIA SPI------------//
-				
-				//target_reset(false); //hard reset needed for non-debug flash write? 
+				// target_reset(false); //hard reset needed for non-debug flash write? 
 								
 				jtag_to_swd();			
 				uint32_t idcode = swd_read(req_read_idcode); 
@@ -58,16 +57,54 @@ int main(void)
 				}
 				
 				swd_write(req_write_csw, CSW_AUTOINC_OFF);
-				swd_write(req_write_select, AP_PORT_F);//select AP port 0
+				swd_write(req_write_select, AP_PORT_F);// select AP port 0
+				swd_read(req_read_idr);
 				uint32_t idr_value = swd_read(req_read_idr);
 				if(idr_value == IDR_DEBUG_LOCKED)
 				{
 					i2c_send_error(error_dbg_locked);
 				}
 				
-				//once programming begins send progress bytes 1-124
 				
-				//NOTE: Driving the line low results in a small current drain at target
+				//halt core
+				swd_clear_abort_reg();
+				swd_write(req_write_select, AP_PORT_0);
+				swd_write(req_write_tar, _DHCSR);
+				swd_write(req_write_csw, CSW_AUTOINC_ON);
+				swd_write(req_write_drw, HALT_CORE);
+				
+				//enable halt on reset
+				swd_clear_abort_reg();
+				swd_write(req_write_select, AP_PORT_0);
+				swd_write(req_write_tar, _DEMCR);
+				swd_write(req_write_csw, CSW_AUTOINC_ON);
+				swd_write(req_write_drw, EN_HALT_ON_RST);
+				
+				//reset core
+				swd_clear_abort_reg();
+				swd_write(req_write_select, AP_PORT_0);
+				swd_write(req_write_tar, _AIRCR);
+				swd_write(req_write_csw, CSW_AUTOINC_ON);
+				swd_write(req_write_drw, RESET_CORE);
+				
+				//below nrf52840 specific 
+				swd_clear_abort_reg();
+				swd_write(req_write_select, AP_PORT_0);
+				swd_write(req_write_tar, NRF52_NVMC_CONFIG);
+				swd_write(req_write_csw, CSW_AUTOINC_ON);
+				swd_write(req_write_drw, ERASE_ENABLE); //enable erase cmd
+				
+				swd_clear_abort_reg();
+				swd_write(req_write_select, AP_PORT_0);
+				swd_write(req_write_tar, NRF52_NVMC_ERASE_ALL);
+				swd_write(req_write_csw, CSW_AUTOINC_ON);
+				swd_write(req_write_drw, ERASE_ALL); //erase all cmd
+				
+				
+				
+				// once programming begins send progress bytes 1-124
+				//NOTE 1: AP reads return result from previous read so it's necessary to read twice and discard first
+				//NOTE 2: Driving the line low results in a small current drain at target
 				
 				
 			}	

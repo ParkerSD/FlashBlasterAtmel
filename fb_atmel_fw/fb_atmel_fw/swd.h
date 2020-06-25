@@ -19,21 +19,57 @@
 #define req_read_idcode 0b10100101
 #define req_write_abort 0b10000001
 #define req_write_select 0b10110001
-#define req_read_ctrl_stat 0b10001101//MSB 0b10110001
-#define req_write_ctrl_stat 0b10101001
+#define req_read_rdbuff 0b10111101
 
 //SWD request command set - AHB-AP
-#define req_read_idr 0b10011111 //port f, Cortex-M4 = 0x24770011 , M0+ = 0x04770031
+#define req_read_idr 0b10011111 //IDR = ID register, located in port F, M4 = 0x24770011 , M0+ = 0x04770031
 #define req_write_csw 0b10100011
+#define req_read_ctrl_stat 0b10001101//MSB 0b10110001
+#define req_write_ctrl_stat 0b10101001
+#define req_write_tar 0b10001011
+#define req_write_drw 0b10111011
 
-//SWD data command set
+//Core Debug Register Addr - Accessed with TAR and DRW
+#define _DFSR 0xE000ED30 // Debug Fault Status Register
+#define _DHCSR 0xE000EDF0 // Debug Halting Control and Status Register 
+#define _DCRSR 0xE000EDF4 // Debug Core Register Selector Register 
+#define _DCRDR 0xE000EDF8 // Debug Core Register Data Register 
+#define _DEMCR 0xE000EDFC // Debug Exception and Monitor Control Register 
+
+//System Control Registers 
+#define _AIRCR 0xE000ED0C // Application Interrupt and Reset Control Register 
+
+
+//SWD data command set - Cortex-M4
 #define SYS_DBG_PWRUP 0x50000000
 #define AP_PORT_0 0x00000000
 #define AP_PORT_F 0x000000F0//(select AHB-AP, bank 0xF)
+#define HALT_CORE 0xA05F0003 // halts core when sent to DHCSR 
+#define EN_HALT_ON_RST 0x00000001 // enables halt on reset when sent to DEMCR
+#define RESET_CORE 0x05FA0004 // resets core when sent to AIRCR 
 
 #define CSW_AUTOINC_ON 0x23000012 //32bit word
 #define CSW_AUTOINC_OFF 0x23000002 //32bit word
 #define IDR_DEBUG_LOCKED 0x16E60001
+
+
+//-----SOC Specific Registers-----// 
+
+//NRF52840 NVMC Register Addresses
+#define NRF52_NVMC_READY 0x4001E400//Ready flag; 0 = busy, 1 = ready 
+#define NRF52_NVMC_READY_NEXT 0x4001E408 //Ready flag; 0 = busy, 1 = ready 
+#define NRF52_NVMC_CONFIG 0x4001E504 // 0=read only access, 1=write enabled, 2=erase enabled
+#define NRF52_NVMC_ERASE_PAGE 0x4001E508
+#define NRF52_NVMC_ERASE_ALL 0x4001E50C //0=no operation, 1=erase all
+#define NRF52_NVMC_ERASE_UICR 0x4001E514 //erase user info config registers
+#define NRF52_NVMC_ERASE_PAGE_PARTIAL 0x4001E518
+#define NRF52_NVMC_ERASE_PAGE_PARTIAL_CFG 0x4001E51C
+#define NRF52_NVMC_ICACHE_CFG 0x4001E540 //instruction cache configuration register.
+#define NRF52_NVMC_IHIT 0x4001E548 //instruction cache hit counter.
+
+//NRF52840 NVMC Commands
+#define ERASE_ENABLE 2 
+#define ERASE_ALL 1
 
 bool swd_calc_parity(uint32_t payload);
 void swd_clear_abort_reg(void);
