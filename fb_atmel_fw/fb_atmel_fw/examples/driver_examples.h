@@ -11,7 +11,7 @@
 #define DRIVER_EXAMPLES_H_INCLUDED
 
 #define I2C_ADDR 0x10
-#define RX_LENGTH 10
+#define RX_LENGTH 18
 
 #ifdef __cplusplus
 extern "C" {

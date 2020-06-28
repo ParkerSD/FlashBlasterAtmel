@@ -11,6 +11,7 @@
 #ifndef SWD_H_
 #define SWD_H_
 
+#define WORD_SIZE 4 
 #define ACK_MASK 0b00000010 
 #define PARITY_MASK 0b00010000 //NOTE parity is 1 if data contains odd # of 1's, 0 if even 
 #define PWRUP_MASK 0xF0000000
@@ -28,6 +29,7 @@
 #define req_write_ctrl_stat 0b10101001
 #define req_write_tar 0b10001011
 #define req_write_drw 0b10111011
+#define req_read_drw 0b10011111
 
 //Core Debug Register Addr - Accessed with TAR and DRW
 #define _DFSR 0xE000ED30 // Debug Fault Status Register
@@ -67,9 +69,13 @@
 #define NRF52_NVMC_ICACHE_CFG 0x4001E540 //instruction cache configuration register.
 #define NRF52_NVMC_IHIT 0x4001E548 //instruction cache hit counter.
 
+#define NRF52_FLASH_START 0x00000000
+
 //NRF52840 NVMC Commands
+#define WRITE_ENABLE 1 
 #define ERASE_ENABLE 2 
 #define ERASE_ALL 1
+
 
 bool swd_calc_parity(uint32_t payload);
 void swd_clear_abort_reg(void);
@@ -81,6 +87,7 @@ uint32_t swd_read(uint8_t);
 void swd_write(uint8_t cmd, uint32_t payload);
 
 void i2c_send_error(uint8_t);
+void i2c_send_progress(uint8_t);
 
 
 #endif /* SWD_H_ */

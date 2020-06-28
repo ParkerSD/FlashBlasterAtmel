@@ -155,6 +155,11 @@ void i2c_send_error(uint8_t err_id) //TODO: use gpio to signal i2c master to rea
 	I2C_write(error_packet, 3); //use gpio to signal master read (new boards)
 }
 
+void i2c_send_progress(uint8_t progress)
+{
+	uint8_t progress_packet[3] = {start_byte, progress_cmd, progress};
+	I2C_write(progress_packet, 3);
+}
 
 
 
