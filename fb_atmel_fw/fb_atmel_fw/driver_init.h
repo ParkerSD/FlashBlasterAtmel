@@ -50,6 +50,7 @@ void FLASH_0_CLOCK_init(void);
 void QUAD_SPI_0_PORT_init(void);
 void QUAD_SPI_0_CLOCK_init(void);
 void QUAD_SPI_0_init(void);
+void QUAD_SPI_0_deinit(void);
 
 void SPI_0_PORT_init(void);
 void SPI_0_CLOCK_init(void);
@@ -63,6 +64,7 @@ void WDT_0_CLOCK_init(void);
 void WDT_0_init(void);
 
 void nor_flash_qspi_init(void);
+void nor_flash_qspi_deinit(void);
 /**
  * \brief Perform system initialization, initialize pins and clocks for
  * peripherals

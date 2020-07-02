@@ -12,6 +12,8 @@ driver_init.c
 
 examples\driver_examples.c
 
+flash.c
+
 hal\src\hal_atomic.c
 
 hal\src\hal_cache.c

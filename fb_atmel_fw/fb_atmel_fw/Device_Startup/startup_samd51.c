@@ -28,6 +28,7 @@
  */
 
 #include "samd51.h"
+#include "hpl_irq.h"
 
 /* Initialize segments */
 extern uint32_t _sfixed;
@@ -116,7 +117,7 @@ void SERCOM2_0_Handler       ( void ) __attribute__ ((weak, alias("Dummy_Handler
 void SERCOM2_1_Handler       ( void ) __attribute__ ((weak, alias("Dummy_Handler"))); /* SERCOM2_1 */
 void SERCOM2_2_Handler       ( void ) __attribute__ ((weak, alias("Dummy_Handler"))); /* SERCOM2_2 */
 void SERCOM2_3_Handler       ( void ) __attribute__ ((weak, alias("Dummy_Handler"))); /* SERCOM2_3, SERCOM2_4, SERCOM2_5, SERCOM2_6 */
-void SERCOM3_0_Handler       ( void ) __attribute__ ((weak, alias("Dummy_Handler"))); /* SERCOM3_0 */
+void SERCOM3_0_Handler       ( void ) __attribute__ ((weak, alias("__SERCOM3_0_Handler"))); /* SERCOM3_0 */
 void SERCOM3_1_Handler       ( void ) __attribute__ ((weak, alias("Dummy_Handler"))); /* SERCOM3_1 */
 void SERCOM3_2_Handler       ( void ) __attribute__ ((weak, alias("Dummy_Handler"))); /* SERCOM3_2 */
 void SERCOM3_3_Handler       ( void ) __attribute__ ((weak, alias("Dummy_Handler"))); /* SERCOM3_3, SERCOM3_4, SERCOM3_5, SERCOM3_6 */
@@ -540,12 +541,20 @@ void Reset_Handler(void)
  * \brief Default interrupt handler for unused IRQs.
  */
 void __HardFault_Handler(void)
-{		volatile int c = 1;
+{		
+		volatile int c = 1;
         while (c==1) {
         }
 }
+
+void __SERCOM3_0_Handler(void)
+{
+		_irq_clear(SERCOM3_0_IRQn);
+}
+
 void Dummy_Handler(void)
-{		volatile int c = 1;
+{		
+		volatile int c = 1;
         while (c==1) {
         }
 }

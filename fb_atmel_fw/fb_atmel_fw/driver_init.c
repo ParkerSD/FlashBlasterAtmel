@@ -262,6 +262,11 @@ void QUAD_SPI_0_init(void)
 	QUAD_SPI_0_PORT_init();
 }
 
+void QUAD_SPI_0_deinit(void)
+{
+	qspi_sync_deinit(&QUAD_SPI_0);
+}
+
 /**
  * \brief Timer initialization function
  *
@@ -366,6 +371,10 @@ void I2C_0_init(void)
 	I2C_0_CLOCK_init();
 	i2c_s_sync_init(&I2C_0, SERCOM3);
 	I2C_0_PORT_init();
+	
+	//SERCOM3->I2CS.INTENSET.reg = SERCOM_I2CS_INTENSET_PREC | SERCOM_I2CS_INTENSET_AMATCH | SERCOM_I2CS_INTENSET_DRDY;
+	//_irq_enable(SERCOM3_0_IRQn);
+
 }
 
 void WDT_0_CLOCK_init(void)
@@ -399,6 +408,10 @@ void nor_flash_qspi_init(void)
 {
 	QUAD_SPI_0_init();
 	spi_nor_flash_init();
+}
+void nor_flash_qspi_deinit(void)
+{
+	QUAD_SPI_0_deinit();
 }
 
 void SWD_GPIO_init(void)

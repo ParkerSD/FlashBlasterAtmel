@@ -187,14 +187,14 @@
 // <e> Advanced Configuration
 // <id> i2c_slave_advanced
 #ifndef CONF_SERCOM_3_I2CS_ADVANCED_CONFIG
-#define CONF_SERCOM_3_I2CS_ADVANCED_CONFIG 0
+#define CONF_SERCOM_3_I2CS_ADVANCED_CONFIG 1
 #endif
 
 // <q> Run in stand-by
 // <i> Determine if the module shall run in standby sleep mode
 // <id> i2c_slave_runstdby
 #ifndef CONF_SERCOM_3_I2CS_RUNSTDBY
-#define CONF_SERCOM_3_I2CS_RUNSTDBY 0
+#define CONF_SERCOM_3_I2CS_RUNSTDBY 1
 #endif
 
 // <o> SDA Hold Time (SDAHOLD)

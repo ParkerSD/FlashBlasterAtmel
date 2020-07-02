@@ -52,7 +52,7 @@
  * \retval  0 The operation completed successfully, returned after leaving the
  *            sleep
  */
-int sleep(const uint8_t mode)
+int sleep(const uint8_t mode) 
 {
 	if (ERR_NONE != _set_sleep_mode(mode))
 		return ERR_INVALID_ARG;
