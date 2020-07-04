@@ -42,19 +42,14 @@ int main(void)
 {	
 	uint32_t ret; 
 	atmel_start_init();
-					
-	//sleep_standby(); 
+
 	
-	/* //nordic resets atmel 
-	if(!gpio) //pin low
+	 //nordic resets atmel, holds BOOT_PIN high to boot
+	if(!gpio_get_pin_level(BOOT_PIN)) //pin low shutdown
 	{
 		system_off();
 	}
-	else if(gpio) //pin high -- redundant/not needed 
-	{
-		continue;
-	}
-	*/
+
 	
 	while (1) 
 	{

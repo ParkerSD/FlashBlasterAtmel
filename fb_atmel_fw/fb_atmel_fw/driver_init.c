@@ -416,6 +416,14 @@ void nor_flash_qspi_deinit(void)
 
 void SWD_GPIO_init(void)
 {
+	
+	gpio_set_pin_direction(BOOT_PIN, GPIO_DIRECTION_IN);
+	gpio_set_pin_pull_mode(BOOT_PIN, GPIO_PULL_DOWN);
+	
+	gpio_set_pin_direction(I2CS_INT, GPIO_DIRECTION_OUT); // set true when tx data ready
+	gpio_set_pin_level(I2CS_INT, false);
+	gpio_set_pin_pull_mode(I2CS_INT, GPIO_PULL_OFF);
+	
 	gpio_set_pin_direction(MOSI_EN, GPIO_DIRECTION_OUT);
 	gpio_set_pin_level(MOSI_EN, true);
 	gpio_set_pin_pull_mode(MOSI_EN, GPIO_PULL_OFF);
