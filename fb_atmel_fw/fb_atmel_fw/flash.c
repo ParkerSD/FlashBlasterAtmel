@@ -32,7 +32,7 @@ uint32_t flash_target(uint32_t data_addr, uint32_t data_len, uint32_t chip_type,
 	nor_flash_qspi_init();
 	uint8_t* qspi_buff = malloc(sizeof(data_len)); 
 	spi_nor_flash_read(SPI_NOR_FLASH_0, qspi_buff, data_addr, data_len); //data_len
-	
+		
 	// target_reset(false); //hard reset needed for non-debug flash write?
 	jtag_to_swd();			
 	uint32_t idcode = swd_read(req_read_idcode); 
@@ -58,7 +58,7 @@ uint32_t flash_target(uint32_t data_addr, uint32_t data_len, uint32_t chip_type,
 //core(swd start_up) -> soc specific (flash map & MSC)  
 uint32_t branch_target(uint8_t* qspi_buff, uint32_t chip_type, uint32_t start_address)
 {	
-	uint32_t ret; 
+	uint32_t ret = f_ok; 
 	switch(chip_type)
 	{
 		case NRF52840:
@@ -211,7 +211,6 @@ uint32_t NRF52840_program(uint8_t* qspi_buff, uint32_t start_address)
 			ready_val = swd_read(req_read_drw);
 		}
 					
-		/*
 		progress_track++; // Once programming begins send progress bytes 1-124
 		if(progress_track >= progress_chunk) //chunk size reached notify nordic	
 		{
@@ -219,6 +218,7 @@ uint32_t NRF52840_program(uint8_t* qspi_buff, uint32_t start_address)
 			packet_count++; 
 			progress_track = 0;
 		}		
-		*/
 	}
+	
+	return f_ok;
 }

@@ -38,6 +38,27 @@ void FLASH_0_init(void)
 	flash_init(&FLASH_0, NVMCTRL);
 }
 
+void QUAD_SPI_0_PORT_deinit(void) // set as inputs with pull off
+{
+	gpio_set_pin_direction(PB11, GPIO_DIRECTION_IN);
+	gpio_set_pin_pull_mode(PB11, GPIO_PULL_OFF);
+	
+	gpio_set_pin_direction(PA08, GPIO_DIRECTION_IN);
+	gpio_set_pin_pull_mode(PA08, GPIO_PULL_OFF);
+
+	gpio_set_pin_direction(PA09, GPIO_DIRECTION_IN);
+	gpio_set_pin_pull_mode(PA09, GPIO_PULL_OFF);
+	
+	gpio_set_pin_direction(PA10, GPIO_DIRECTION_IN);
+	gpio_set_pin_pull_mode(PA10, GPIO_PULL_OFF);
+	
+	gpio_set_pin_direction(PA11, GPIO_DIRECTION_IN);
+	gpio_set_pin_pull_mode(PA11, GPIO_PULL_OFF);
+	
+	gpio_set_pin_direction(PB10, GPIO_DIRECTION_IN);
+	gpio_set_pin_pull_mode(PB10, GPIO_PULL_OFF);
+}
+
 void QUAD_SPI_0_PORT_init(void)
 {
 
@@ -265,6 +286,7 @@ void QUAD_SPI_0_init(void)
 void QUAD_SPI_0_deinit(void)
 {
 	qspi_sync_deinit(&QUAD_SPI_0);
+	QUAD_SPI_0_PORT_deinit();
 }
 
 /**

@@ -17,42 +17,19 @@
 
 uint8_t i2c_buf[RX_LENGTH]; 
 
-void sleep_standby(void) //~1.5mA draw 
-{
-	PM->SLEEPCFG.bit.SLEEPMODE = PM_SLEEPCFG_SLEEPMODE_STANDBY;
-	while(PM->SLEEPCFG.bit.SLEEPMODE != PM_SLEEPCFG_SLEEPMODE_STANDBY);
-	_go_to_sleep();
-}
-
-void sleep_hibernate(void)
-{
-	PM->SLEEPCFG.bit.SLEEPMODE = PM_SLEEPCFG_SLEEPMODE_HIBERNATE;
-	while(PM->SLEEPCFG.bit.SLEEPMODE != PM_SLEEPCFG_SLEEPMODE_HIBERNATE);
-	_go_to_sleep();
-}
-
-void system_off(void) // < 1mA draw
-{
-	PM->SLEEPCFG.bit.SLEEPMODE = PM_SLEEPCFG_SLEEPMODE_OFF;
-	while(PM->SLEEPCFG.bit.SLEEPMODE != PM_SLEEPCFG_SLEEPMODE_OFF);
-	_go_to_sleep();	
-}
 
 int main(void)
 {	
 	uint32_t ret; 
 	atmel_start_init();
-
 	
-	 //nordic resets atmel, holds BOOT_PIN high to boot
-	if(!gpio_get_pin_level(BOOT_PIN)) //pin low shutdown
-	{
-		system_off();
-	}
-
+	QUAD_SPI_0_PORT_deinit(); //float qspi pins, if atmel is not held in reset
 	
-	while (1) 
+	//TIMER_0_example(); //shutoff timer not working
+	
+	while (gpio_get_pin_level(BOOT_PIN)) 
 	{
+		
 		I2C_read(i2c_buf, RX_LENGTH);
 				
 		if(i2c_buf[0] == start_byte) //start byte CC 
@@ -67,10 +44,12 @@ int main(void)
 				ret = flash_target(data_addr, data_len, chip_type, start_address);
 				if(ret == f_ok || ret == f_err)
 				{
-					//sleep_standby();
+					system_off();  //NOTE: red light indicates atmel is in off state
 				}
-		
-			}	
-		}	
+			}
+		}
 	}
+	
+	system_off();
+	
 }

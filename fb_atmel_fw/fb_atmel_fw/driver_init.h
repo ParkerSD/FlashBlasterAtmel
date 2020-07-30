@@ -48,6 +48,7 @@ void FLASH_0_init(void);
 void FLASH_0_CLOCK_init(void);
 
 void QUAD_SPI_0_PORT_init(void);
+void QUAD_SPI_0_PORT_deinit(void);
 void QUAD_SPI_0_CLOCK_init(void);
 void QUAD_SPI_0_init(void);
 void QUAD_SPI_0_deinit(void);
